@@ -11,3 +11,9 @@
 -----------------
 复制这条信息，￥HQHJbq4W4RI￥ ，打开【手机淘宝】即可下单
 ```
+##　笔记目录
+
+| 文件名 | markdown链接     |
+| :------------- | :------------- |
+| if      | [if语句](./markdown_note/if.md)      |
+|function|[函数](./markdown_note/function.md)
