@@ -19,4 +19,5 @@
 | if      | [if语句](./markdown_note/if.md)      |
 |function|[函数](./markdown_note/function.md)
 |class|[类](./markdown_note/class.md)
+|Exceptions|[异常处理](./markdown_note/exceptions.md)
 |numpy|[numpy库:数组的操作](./markdown_note/numpy.md)
