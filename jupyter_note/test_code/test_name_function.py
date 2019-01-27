@@ -8,9 +8,9 @@ class NamesTestCase(unittest.TestCase):
         '''能够处理像Janis Joplin 这样的姓名吗'''
         formatted_name = get_formatted_name('janis', 'joplin')
         self.assertEqual(formatted_name, 'Janis Joplin')
-
-        formatted_name = get_formatted_name('stephen', 'hawking')
-        self.assertEqual(formatted_name, 'Stephen Hawking')
+    def test_first_last_middle_name(self):
+        formatted_name = get_formatted_name('stephen', 'hawking','william')
+        self.assertEqual(formatted_name, 'Stephen William Hawking')
 
 
 unittest.main()
@@ -30,5 +30,15 @@ TypeError: get_formatted_name() missing 1 required positional argument: 'last'
 Ran 1 test in 0.001s
 
 FAILED (errors=1)
+
+'''
+'''
+增加一个函数后输出
+
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
 
 '''
