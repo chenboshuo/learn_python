@@ -15,11 +15,20 @@ class NamesTestCase(unittest.TestCase):
 
 unittest.main()
 '''
-output 
-.
+错误时输出
+E
+======================================================================
+ERROR: test_first_last_name (__main__.NamesTestCase)
+能够处理像Janis Joplin 这样的姓名吗
 ----------------------------------------------------------------------
-Ran 1 test in 0.000s
+Traceback (most recent call last):
+  File "D:/OneDrive - JJXY/文档/python/python_learning/jupyter_note/test_code/test_name_function.py", line 9, in test_first_last_name
+    formatted_name = get_formatted_name('janis', 'joplin')
+TypeError: get_formatted_name() missing 1 required positional argument: 'last'
 
-OK
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
 
 '''
