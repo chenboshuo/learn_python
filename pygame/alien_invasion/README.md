@@ -36,3 +36,27 @@ bg_color = (230, 230, 230)
 ## 12.4 添加飞船图像
 
 在游戏中几乎可以加载任何类型的图片文件,但使用位图(`.bmp`)最简单, 因为pygame默认加载位图.
+
+### 12.4.1 创建ship类
+
+-   [code](https://github.com/chenboshuo/python_learning/commit/1d1939ec17263c5f8c6d4e0924e52389fb762826#diff-9cc57e6c320f1d54eea8690342da30a7)
+
+我们将创建一个ship的模块, 其中包含ship类,它负责飞船大部分行为.
+
+```py
+ self.imag = pygame.image.load('images/ship.bmp')
+```
+函数返回一个表示飞船外形的surface
+
+```py
+self.rect = self.imag.get_rect()
+```
+获取对象的属性rect,可以让你像处理矩形一样处理游戏元素, 提高效率.
+
+处理rect对象时, 可以使用矩形四角和中心的x和y坐标,通过设置这些值来指定矩形的位置.
+
+要想让游戏元素居中, 可以设置rect对象属性center,centerx, centery. 要想让游戏元素与边缘对齐,可以使用属性top, bottom, left, right; 要调整游戏元素水平或垂直位置,可以使用属性x,y,他们分别是矩形左上角的坐标值
+
+#### 12.4.2 在屏幕上绘制飞船
+
+通过调用方法blitme
