@@ -1,7 +1,9 @@
 import sys
 
 import pygame
+
 from settings import Setting
+from ship import Ship
 
 def run_game():
     # 初始化游戏并创建一个屏幕对象
@@ -11,6 +13,9 @@ def run_game():
         (ai_settings.screen_width, ai_settings.screen_height)
     ) # 创建(1200, 800)的窗口
     pygame.display.set_caption("Alien Invasion")
+
+    # 创建一艘飞船
+    ship = Ship(screen)
 
     # 开始游戏主循环
     while True:
@@ -22,6 +27,7 @@ def run_game():
 
         # 每次循环都重新绘制屏幕
         screen.fill(ai_settings.bg_color) # 这个方法只接受一种实参: 一种颜色
+        ship.biltme()
 
         # 让最近的屏幕可见
         pygame.display.flip()
