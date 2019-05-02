@@ -60,3 +60,13 @@ self.rect = self.imag.get_rect()
 #### 12.4.2 在屏幕上绘制飞船
 
 通过调用方法blitme
+
+## 12.5 重构: 模块game_functions
+创建game_function 模块,存储使游戏运行的函数,防止alien_events 过长
+
+### 12.5.1 函数 check_events()
+
+-   [代码](https://github.com/chenboshuo/python_learning/commit/8e2aa07a52795311efa93d78a8ac74d6d1c4fc33)
+函数check_events() 不需要任何形参, 其函数体复制了 alien_invasion 事件循环的
+
+主程序中不需要导入sys, 因为当前只在game_funxtions 使用了它.
