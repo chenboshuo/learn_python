@@ -11,8 +11,12 @@ def check_events(ship):
         elif event.type == pygame.KEYDOWN:
             # 读取属性event.key, 检查按下的键是否为右箭头( pygame.K_RIGHT)
             if event.key == pygame.K_RIGHT:
-                # 向右移动飞船
-                ship.rect.centerx += 1 # 使用了ship所以要定义为形参
+                # 修改移动标志,在ship.update()向右移动飞船
+                ship.moving_right = True
+
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_RIGHT:
+                ship.moving_right = False
 
 def update_screen(ai_settings, screen, ship):
     '''更新屏幕上的图像,并切换到新屏幕'''
