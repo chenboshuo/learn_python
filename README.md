@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b3d5173006a44aa28b9fd77252584c25)](https://www.codacy.com/app/chenboshuo/python_learning?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chenboshuo/python_learning&amp;utm_campaign=Badge_Grade)
 [![HitCount](http://hits.dwyl.io/chenboshuo/python_learning.svg)](http://hits.dwyl.io/chenboshuo/python_learning)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/chenboshuo/python_learning.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/chenboshuo/python_learning/context:python)
-
+![GitHub repo size](https://img.shields.io/github/repo-size/chenboshuo/python_learning.svg)
 
 ## 参考
 -   [python从入门到实践](https://m.tb.cn/h.ebtZnRI)
