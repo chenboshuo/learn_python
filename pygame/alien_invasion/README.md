@@ -1,7 +1,9 @@
+# 项目1 外星人入侵
 > 项目来自 `python编程从入门到实践` 12,13,14章
 
 -   [所有版本](https://github.com/chenboshuo/python_learning/commits/35e660d951a3bee63744930a4bb24a95e70f8c4e/pygame/alien_invasion/alien_invason.py)
 
+# 12章 武装飞船
 ## 12.3 开始游戏项目
 ### 12.3.1 创建pygame窗口以及响应用户输入
 -   [code](https://github.com/chenboshuo/python_learning/commit/09c56a1399cc1c891aa743c0e0fbba9365a6eff8)
@@ -70,3 +72,10 @@ self.rect = self.imag.get_rect()
 函数check_events() 不需要任何形参, 其函数体复制了 alien_invasion 事件循环的
 
 主程序中不需要导入sys, 因为当前只在game_funxtions 使用了它.
+### 12.5.2 函数update_screen()
+-   [代码]()
+为了进一步简化代码, 将更新屏幕的代码移到名为update_screen()的函数中
+
+两个函数让while变得简单, 让后续开发更容易: 在game_function 而不是run_game()中完成大部分工作.
+
+我们一开始只想用一个文件, 因此没有引入模块game_function. 开发过程中, 一开始将代码写的尽可能简单, 并在项目越来越复杂是进行重构
