@@ -133,3 +133,53 @@ self.rect = self.imag.get_rect()
 创建两个函数, 都包含形参event和ship, 这两个代码是从check_events()中复制过来的, 因此可以代替这些代码
 
 > 12.7 是回顾部分, 略
+
+## 12.8 射击
+
+### 12.8.1 添加子弹设置
+更新`settings.py`在__init__()末尾存储设置
+
+### 12.8.2 创建`Bullet`类
+
+通过使用精灵, 可以将游戏中相关的元素编组, 进而同时操作编组中的所有元素.
+
+### 12.8.3 将子弹存到编组中
+
+我们在`alien_invason.py`中创建一个编组(Group), 用于存储所有有效子弹, 以便能够管理发射出去的所有子弹. 这个编组是pygame.sprite.Group 类的实例; pygame.sprite.Group 类似于列表, 但提供了有助于游戏开发的额外功能. 在主循环中, 我们将使用这个编组在屏幕上绘制子弹, 以更新每颗子弹的位置
+
+### 12.8.4 开火
+修改`check_keydown_events()` 以便玩家按空格的时候发射一颗子弹, 无需修改`check_keyup_events()`因为玩家松开空格的时候什么都不会发生. 我们还要修改update_screen(), 确保在调用flip()的时候重绘每颗子弹
+
+-   [1-4 的代码](https://github.com/chenboshuo/python_learning/commit/e8617ef84edb19adb684047e3b191ec4fb02a171)
+
+### 12.8.5 删除已消失的子弹
+当前, 子弹到达屏幕顶端之后消失, 仅仅因为pygame无法在屏幕之外绘制他们, 这些子弹其实一直存在, 他们的y为负数, 且越来越小, 他们将继续消耗内存和处理能力
+
+如果代码没问题, 将print语句删除. 如果留下这条语句, 游戏的速度大大降低, 因为输出写入终端而花费的事件比图形绘制到游戏窗口的时间还多.
+
+-   [相关代码](https://github.com/chenboshuo/python_learning/commit/538fc6356b159606eaca2eb88844fed10a9b186b)
+
+### 12.8.6 限制子弹数量
+很多射击游戏都限制同时出现的子弹数量, 来鼓励玩家有目标的射击.
+
+首先在`setting.py`中存储允许的最大子弹数
+
+在`game_functions.py`的`check_keydown_events()`中, 创建子弹前检查未消失的子弹是否小于该设置
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/09e23a53d5d72a00f81cb91b1fb94a40ea426a81)
+
+### 12.8.7 创建函数 update_bullets()
+
+编写并管理代码后, 可以将其移到`game_functions`中, 以让主程序尽可能简单. 我们创建一个`update_bullets()`的新函数,将他添加到`game_functions.py`的末尾.
+
+我们让主循环包含尽可能少的代码, 这样只需要看函数名就迅速知道游戏中发生的情况.
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/daca8676c19e77453d7424282ab2076a500e7d21)
+
+### 12.8.8 创建函数 fire_bullet()
+
+下面将发射子弹的代码移到一个独立的函数中, 这样, `check_keydown_events` 只需要一行代码发射子弹, 让`elif`代码块变得简洁
+
+函数`fire_bullet()`只包含玩家按空格时用于发射子弹的代码; 在`check_keydown_events()`中, 玩家按空格的时候调用`fire_bullet()`
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/32fc2546765139c44513f15cc5e0abbb495e7a6a)
