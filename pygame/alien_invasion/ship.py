@@ -33,6 +33,6 @@ class Ship():
         # 根据self.center(小数) 更新rect 对象(整数部分)
         self.rect.centerx = self.center
 
-    def biltme(self):
+    def blitme(self):
         '''在指定位置绘制飞船'''
         self.screen.blit(self.imag, self.rect)
