@@ -28,6 +28,9 @@ def check_keyup_events(event, ship):
         ship.moving_right = False
     if event.key == pygame.K_LEFT:
         ship.moving_left = False
+    elif event.key == pygame.K_w and  pygame.key.get_mods() & pygame.KMOD_CTRL : # and 前后交换次序好像不可以,
+        # reference:　https://stackoverflow.com/questions/24923078/python-keydown-combinations-ctrl-key-or-shift-key
+        sys.exit()
 
 def check_events(ai_settings, screen, ship, bullets):
     '''响应按键和鼠标事件'''
