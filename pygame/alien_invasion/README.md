@@ -183,3 +183,45 @@ self.rect = self.imag.get_rect()
 函数`fire_bullet()`只包含玩家按空格时用于发射子弹的代码; 在`check_keydown_events()`中, 玩家按空格的时候调用`fire_bullet()`
 
 -   [相关修改](https://github.com/chenboshuo/python_learning/commit/32fc2546765139c44513f15cc5e0abbb495e7a6a)
+
+# 13 外星人
+## 13.1 设置快速退出快捷键
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/22eb4fd5549b5b74a9448803c819fa7226202766)
+## 13.2 创建第一个外星人
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/dd2e550dcea0ffb24aabf664384c76352521432c)
+### 31.2.1 创建Alien类
+除了位置不同之外, 大多数代码与ship类似. 每个外星人都在屏幕左上角附近, 我们将每个外星人左边距设为外星人的宽度,并将上边距设为外星人的高度.
+### 12.2.3 让外星人出现在屏幕上
+利用update_screen 调用方法 blitme
+
+## 13.3 创建一群外星人
+### 13.3.1 确定一行可容纳多少外星人
+
+可以用于放置外星人的水平空间设为屏幕宽度减去外星人宽度的两倍:
+```py
+avaiable_space_x = as_settings.screen_width - (2*alien_width)
+```
+我们还要在外星人之间留出一定空间, 即外星人的宽度. 因此, 显示一个外星人所需要的水平空间为外星人宽度的两倍.
+```py
+number_alien_x = available_space_x / (2*alien_width)
+```
+
+### 13.3.2 创建多行外星人
+```py
+aliens.draw(screen)
+```
+对编组调用draw()时, pygame会自动绘制编组的每一个元素, 绘制位置由元素属性rect决定.
+
+### 13.3.3 创建外星人群
+-   [修改](https://github.com/chenboshuo/python_learning/commit/7253965ad2c1d88f96dee618e9608d753e604541)
+
+### 13.3.4 重构create_fleet()
+-   [我们清理一下creat_fleet()](https://github.com/chenboshuo/python_learning/commit/036b901f6fcee08b88313fe5daf7f9efed1febaf)
+
+### 13.3.5 添加行
+垂直空间可以这样计算, 将屏幕高度减去第一行外星人的上边距(外星人高度), 飞船高度加上外星人边距(外星人高度的两倍):
+```py
+available_space_y = ai_settings.screenheight - 3 * alien_height - ship_height.
+```
+这将在飞船上方留出一定空白区域,给玩家留出射杀外星人的时间.
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/1536124c4adbbc81987ee267aea980bb6a24f888)
