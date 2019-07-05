@@ -225,3 +225,22 @@ available_space_y = ai_settings.screenheight - 3 * alien_height - ship_height.
 ```
 这将在飞船上方留出一定空白区域,给玩家留出射杀外星人的时间.
 -   [相关修改](https://github.com/chenboshuo/python_learning/commit/1536124c4adbbc81987ee267aea980bb6a24f888)
+
+## 13.4 让外星人群移动
+下面让外星人在屏幕上向右移动, 撞到屏幕边缘之后下移一定距离, 再沿相反的方向移动. 我们将不断移动外星人, 直到所有外星人都被消灭,有外星人装上飞船, 或者有外星人到达屏幕底端.
+
+### 13.4.1 向右移动外星人
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/e87a3d9ebfec4dc15c959d7dc422adc271f6db78)
+
+### 13.4.2 创建表示外星人移动方向的设置
+下面创建外星人撞到屏幕右边缘后向下移动, 再向左移动的设置. 实现该功能的代码如下:
+```py
+self.alien_speed_factor = 1
+self.fleet_drop_speed = 10
+self.fleet_direction = 1 # 1表示右移, -1表示左移
+```
+因为`leet_direction`只有两个方向, 可以用1,-1表示,并在外星人改变方向时切换.
+
+### 13.4.3 检查外星人是否撞到了屏幕边缘
+### 13.4.4 向下移动外星人并改变移动方向
+  -[相关修改](https://github.com/chenboshuo/python_learning/commit/f41bb684875b8d61adff3d070f57e71cf374a46d)
