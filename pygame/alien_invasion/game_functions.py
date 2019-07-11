@@ -56,7 +56,7 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     # 让最近的屏幕可见
     pygame.display.flip()
 
-def update_bullets(aliens, bullets):
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
     '''更新子弹位置, 删除已经消失的子弹    '''
     # 更新子弹位置
     bullets.update()
@@ -69,7 +69,10 @@ def update_bullets(aliens, bullets):
     # (要模拟能穿行到屏幕顶端的高能子弹--消灭它击中的每一个外星人,可将第一个布尔参数设为False.
     #  这样被他击中的外星人将消失,所有子弹始终有效, 直到抵达屏幕顶端后消失.)
 
-
+    if len(aliens) == 0:
+        # 删除现有子弹并创建一群新的外星人
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
     # 删除已消失的子弹(不应从列表或编组中删除条目)
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
