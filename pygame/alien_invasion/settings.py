@@ -17,6 +17,7 @@ class Setting():
 
         # 飞船设置
         self.ship_speed_factor = 1.5
+        self.ship_limit = 3
 
         # 外星人设置
         self.alien_speed_factor = 1
