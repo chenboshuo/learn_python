@@ -244,3 +244,31 @@ self.fleet_direction = 1 # 1表示右移, -1表示左移
 ### 13.4.3 检查外星人是否撞到了屏幕边缘
 ### 13.4.4 向下移动外星人并改变移动方向
   -[相关修改](https://github.com/chenboshuo/python_learning/commit/f41bb684875b8d61adff3d070f57e71cf374a46d)
+
+## 13.5 射杀外星人
+
+### 13.5.1 检测子弹与外星人相撞
+```py
+ollisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+```
+新增的这行代码遍历编组bullets中的每颗子弹,再遍历编组aliens中的每个外星人.
+每当有子弹和外星人的rect重叠时, groupcollide()就在它返回的字典中添加一个键-值对.
+两个实参True告诉pygame要删除发生碰撞的子弹和外星人.
+(要模拟能穿行到屏幕顶端的高能子弹--消灭它击中的每一个外星人,可将第一个布尔参数设为False.
+这样被他击中的外星人将消失,所有子弹始终有效, 直到抵达屏幕顶端后消失.)
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/ded65ee27083dea3448cabf68b8190527fd33fac)
+
+### 13.5.2 为测试创建大子弹
+
+[为了测试修改子弹宽度](https://github.com/chenboshuo/python_learning/commit/58bbfc7c9d064324c3a9a9cda87b0496253467cd)
+
+### 13.5.3 生成新的外星人群
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/9332879f3fcd5a83fdba531d062d09872487ab4c)
+
+### 13.5.4 提高子弹速度
+现在尝试在游戏中射杀外星人, 发现子弹速度比以前慢, 这是因为在每次循环中, Pygame 要做的工作更多了. 为了提高子弹速度, 可以调整`setting.py`中`bullet_speed_factor`的值
+-   [这里把这个值改成2了](https://github.com/chenboshuo/python_learning/commit/ba8d68750b429c53a26f683951fd7701ba60de61)
+
+### 13.5.5 重构update_bullets()
+
+-   [构造新的函数check_bullet_aliens_collisions()](https://github.com/chenboshuo/python_learning/commit/6b8e750df28d64b8a7b071625ffe934899a760fb)
