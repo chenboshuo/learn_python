@@ -119,12 +119,21 @@ def create_fleet(ai_settings, screen, ship, aliens):
         for alien_number in range(number_aliens_x):
             create_alien(ai_settings, screen, aliens, alien_number, row_number)
 
-def update_aliens(ai_settings, aliens):
+def update_aliens(ai_settings, ship, aliens):
     '''
     检查外星人是否位于屏幕边缘, 并更新外星人位置
     '''
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
+
+    # 检测外星人和飞船之间的碰撞
+    if pygame.sprite.spritecollideany(ship, aliens):
+        '''
+        方法spritecollideany()接受两个实参:一个精灵和一个编组.
+        它检查精灵和编组是否发生碰撞, 找到与精灵发生了碰撞的成员后停止遍历编组.
+        在这里, 它遍历编组aliens, 返回它找到的第一个与飞船发生碰撞的外星人.
+        '''
+        print('ship hit!!!')
 
 def check_fleet_edges(ai_settings, aliens):
     '''有外星人到达边缘时采取的相应的措施'''
