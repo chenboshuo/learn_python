@@ -136,6 +136,15 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     # 暂停
     sleep(0.5)
 
+def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
+    '''检查是不是有外星人到达屏幕底端'''
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            # 像飞船被撞到一样处理
+            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            break
+
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     '''
     检查外星人是否位于屏幕边缘, 并更新外星人位置
@@ -151,6 +160,9 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
         在这里, 它遍历编组aliens, 返回它找到的第一个与飞船发生碰撞的外星人.
         '''
         ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+
+    # 检查外星人是否到达屏幕底端
+    check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
 
 def check_fleet_edges(ai_settings, aliens):
     '''有外星人到达边缘时采取的相应的措施'''
