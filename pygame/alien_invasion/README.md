@@ -304,3 +304,11 @@ pygame.sprite.spritecollideany(ship, aliens):
 这个游戏永远不会结束,只是ship_left 不断变为更小的负数. 下面在`GameStats`中添加一个作为标示的属性`game_active`,以便玩家在用完飞船之后结束游戏
 
 -   [相关修改](https://github.com/chenboshuo/python_learning/commit/ea5e0c777d042613b5bcf0706776c7243f88b4d4)
+
+## 13.7 确定运行游戏的哪些部分
+
+在`alien.py`中, 我们需要确定哪些部分在任何情况下都能运行, 那些在游戏处于活动状态才运行.
+
+现在飞船用完后停止不动
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/b70a33f7dff94ef488ec238176b483cfefcb5b3)
