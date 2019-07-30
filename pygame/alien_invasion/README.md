@@ -272,3 +272,35 @@ ollisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 ### 13.5.5 重构update_bullets()
 
 -   [构造新的函数check_bullet_aliens_collisions()](https://github.com/chenboshuo/python_learning/commit/6b8e750df28d64b8a7b071625ffe934899a760fb)
+
+## 13.6 结束游戏
+
+### 13.6.1 检测外星人和飞船碰撞
+
+检查外星人和飞船的碰撞, 以便外星人撞上飞船时我们能做出合理的响应.
+我们在更新每个外星人的位置立即检测外星人和飞船的碰撞.
+
+```py
+pygame.sprite.spritecollideany(ship, aliens):
+```
+方法spritecollideany()接受两个实参:一个精灵和一个编组.
+它检查精灵和编组是否发生碰撞, 找到与精灵发生了碰撞的成员后停止遍历编组.
+在这里, 它遍历编组aliens, 返回它找到的第一个与飞船发生碰撞的外星人.
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/569baea8565ab3cb4b852a43f893b6ff8a5d3f3f)
+
+### 13.6.2 响应外星人和飞船碰撞
+
+现在确定外星人与飞船发生碰撞时, 该做些什么.
+我们在不销毁ship实例并创建一个新的实例, 而是通过跟踪游戏统计信息来记录飞船被撞多少次.
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/05421627435149008f2ef28c7e3b72567561594f)
+
+### 13.6.3 有外星人到达屏幕底端
+如果外星人到达屏幕底端,我们将像外星人撞到飞船一样响应.
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/ea5e0c777d042613b5bcf0706776c7243f88b4d4)
+
+### 13.6.4 游戏结束
+这个游戏永远不会结束,只是ship_left 不断变为更小的负数. 下面在`GameStats`中添加一个作为标示的属性`game_active`,以便玩家在用完飞船之后结束游戏
+
+-   [相关修改](https://github.com/chenboshuo/python_learning/commit/ea5e0c777d042613b5bcf0706776c7243f88b4d4)
