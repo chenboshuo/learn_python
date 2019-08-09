@@ -24,11 +24,10 @@ class Button():
 
     def prep_msg(self,msg):
         '''将msg渲染为图像, 并使其在按钮上居中'''
-        self.msg_image = self.font.render(msg, True, self.rext_color, self.botton_color)
+        self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
     def draw_button(self):
         """绘制一个用颜色填充的按钮,再绘制文本"""
-        self.sreen.fill(self.button_color, self.rect)
+        self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
-        
