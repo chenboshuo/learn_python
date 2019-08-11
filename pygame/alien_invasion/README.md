@@ -342,3 +342,11 @@ pygame.sprite.spritecollideany(ship, aliens):
 ### 14.1.6 隐藏光标
 游戏活动时, 光标只会添乱, 游戏开始后显示光标
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/77356b29199bd8b0bfd7bc03dc830d078d2258e8)
+
+## 14.2 提高等级
+下面增加一点趣味性, 每次消灭干净外星人后, 加快游戏节奏, 让游戏玩起来更难
+
+### 14.2.1 修改速度设置
+首先重新组织setting类,将游戏分成静态和动态两组.
+对于随着游戏变化的设置, 我们还要保证生成新游戏时被重置
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/6eb4ab53729ee6806fa46332b9f17eae4bde8838)

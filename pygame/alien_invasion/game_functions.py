@@ -110,8 +110,9 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     #  这样被他击中的外星人将消失,所有子弹始终有效, 直到抵达屏幕顶端后消失.)
 
     if len(aliens) == 0:
-        # 删除现有子弹并创建一群新的外星人
+        # 删除现有子弹,加快游戏节奏,创建一群新的外星人
         bullets.empty()
+        ai_settings.increase_speed( )
         create_fleet(ai_settings, screen, ship, aliens)
 
 def get_number_aliens_x(ai_settings, alien_width):
