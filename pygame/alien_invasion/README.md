@@ -350,3 +350,7 @@ pygame.sprite.spritecollideany(ship, aliens):
 首先重新组织setting类,将游戏分成静态和动态两组.
 对于随着游戏变化的设置, 我们还要保证生成新游戏时被重置
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/6eb4ab53729ee6806fa46332b9f17eae4bde8838)
+
+### 14.2.2 重置速度
+玩家开始游戏时, 将已经变化的值设为初始值, 否则游戏开始时, 速度设置将是上一次游戏增加的值
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/e0d7b3ea53f802e061a5cca25f46ccb8460b1c2d)
