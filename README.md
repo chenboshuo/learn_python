@@ -9,16 +9,6 @@
 ## 参考
 -   [python从入门到实践](https://m.tb.cn/h.ebtZnRI)
 
-
-```plaintext
-python基础教程 Python编程从入门到实践实战快速上手零基础编程从入门到精通语言python设计小甲鱼数据开发网络爬虫计算机【包邮】
-【在售价】69.80元
-【券后价】66.80元
-【下单链接】https://m.tb.cn/h.ebtZnRI
------------------
-复制这条信息，￥utWLYZDiY8w￥，到【手机淘宝】即可查看
-```
-
 ## 相关笔记,目录
 
 > [markdown笔记在这里](https://github.com/chenboshuo/python_learning/wiki)
@@ -31,9 +21,10 @@ python基础教程 Python编程从入门到实践实战快速上手零基础编�
 >>> [alien_invason.py](./pygame/alien_invasion/alien_invason.py) | 主程序
 >>>
 >>> [settings.py](./pygame/alien_invasion/settings.py) | 存储相关设置
->>>
 >>> [ship.py](./pygame/alien_invasion/ship.py) | 负责飞船的大部分行为
->>>
+>>> [bullet.py](./pygame/alien_invasion/bullet.py) | 子弹
+>>> [button.py](./pygame/alien_invasion/button.py) | 按钮类
+>>>[game_stats.py](./pygame/alien_invasion/game_stats.py) | 存储游戏状态
 >>> [images](./pygame/alien_invasion/images) | 图片
 
 ## 许可

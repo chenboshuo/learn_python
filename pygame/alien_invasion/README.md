@@ -312,3 +312,33 @@ pygame.sprite.spritecollideany(ship, aliens):
 现在飞船用完后停止不动
 
 -   [相关修改](https://github.com/chenboshuo/python_learning/commit/b70a33f7dff94ef488ec238176b483cfefcb5b3)
+
+# 14章 计分
+
+## 14.1 添加play按钮
+添加play按钮,在游戏开始结束时出现, 让玩家可以开始游戏
+
+-   [让游戏一开始处于非活动状态](https://github.com/chenboshuo/python_learning/commit/194da054b4a308cb516bd7224d8f3c00a75fdc2b)
+
+### 14.1.1 创建`Button`类
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/ec54bd1c06f12eacb0a89f65e385ddc639da589d)
+
+### 14.4.2 在屏幕上绘制按钮
+-   [直接在alien_invasion绘制它](https://github.com/chenboshuo/learn_python/commit/93a4a6cea2b8d3368d7d595a9bac4c412be0fa68)
+
+### 14.1.3 开始游戏
+为了使玩家点击`play`之后可以开始游戏,在`game_function`中添加代码,监视与这个按钮相关的事件.
+
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/648d229bd444a952229cf4ee7af978c4483aa423)
+
+### 14.1.4 重置游戏
+前面的代码没有处理游戏结束的情况,因为没有重置导致游戏结束的条件
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/2e38948a6a48a14e0f61a793435fb3ec42db5e82)
+
+### 14.1.5 将play按钮切换到非活动状态
+现在按钮有一个问题, 即使按钮不可见, 玩家点击原来所处的区域时,游戏依然会做出响应
+-   [现在修复这个问题](https://github.com/chenboshuo/learn_python/commit/59ba4d8147d725d01a042f7e86b01a23de1a7ca2)
+
+### 14.1.6 隐藏光标
+游戏活动时, 光标只会添乱, 游戏开始后显示光标
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/77356b29199bd8b0bfd7bc03dc830d078d2258e8)
