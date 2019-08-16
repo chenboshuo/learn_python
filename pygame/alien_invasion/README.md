@@ -369,3 +369,8 @@ pygame.sprite.spritecollideany(ship, aliens):
 外星人被击中时, 更新`stats.score`的值, 调用`prep_score()`更新得分图像.
 在此之前, 指定击落外星人得分点为50
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/e562613cc0203b77ef53c490059c72293e2169f0)
+
+### 13.3.4 将消灭的每个外星人都计入得分
+当前, 我们的代码中遗漏了一些被消灭的外星人.
+例如, 在一次循环中有两颗子弹同时射中外星人, 或者因子弹宽同时击中了多个外星人, 玩家只能得到一个外星人的点数, 为了修复这个问题, 我们调整检测外星人碰撞方式.
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/b2829fb53162209b8b0b34b164d1aad9473d4413)
