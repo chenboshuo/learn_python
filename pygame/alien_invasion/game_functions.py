@@ -91,8 +91,9 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
     # 让最近的屏幕可见
     pygame.display.flip()
 
-def update_bullets(ai_settings, screen, ship, aliens, bullets):
-    '''更新子弹位置, 删除已经消失的子弹    '''
+
+def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
+    """更新子弹位置, 删除已经消失的子弹"""
     # 更新子弹位置
     bullets.update()
 
@@ -102,10 +103,11 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
             bullets.remove(bullet)
             # print(len(bullets))
 
-    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
-    '''响应子弹和外星人碰撞'''
+
+def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets):
+    """响应子弹和外星人碰撞"""
     # 检查是否有子弹击中了外星人
     # 如果这样, 就删除子弹和外星人
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
@@ -114,6 +116,10 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     # 两个实参True告诉pygame要删除发生碰撞的子弹和外星人.
     # (要模拟能穿行到屏幕顶端的高能子弹--消灭它击中的每一个外星人,可将第一个布尔参数设为False.
     #  这样被他击中的外星人将消失,所有子弹始终有效, 直到抵达屏幕顶端后消失.)
+
+    if collisions:
+        stats.score += ai_settings.alien_points
+        sb.prep_score()
 
     if len(aliens) == 0:
         # 删除现有子弹,加快游戏节奏,创建一群新的外星人

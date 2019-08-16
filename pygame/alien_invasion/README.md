@@ -364,3 +364,8 @@ pygame.sprite.spritecollideany(ship, aliens):
 ### 14.3.2 创建记分牌
 为了显示得分, 我们在`alien_invasion.py`创建一个`Scoreboard`实例
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/89a146c422d10aaa2614073176fe9d9df1003477)
+
+### 14.3.3 在外星人被消灭时更新得分
+外星人被击中时, 更新`stats.score`的值, 调用`prep_score()`更新得分图像.
+在此之前, 指定击落外星人得分点为50
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/e562613cc0203b77ef53c490059c72293e2169f0)
