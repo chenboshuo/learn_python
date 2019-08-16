@@ -354,3 +354,13 @@ pygame.sprite.spritecollideany(ship, aliens):
 ### 14.2.2 重置速度
 玩家开始游戏时, 将已经变化的值设为初始值, 否则游戏开始时, 速度设置将是上一次游戏增加的值
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/e0d7b3ea53f802e061a5cca25f46ccb8460b1c2d)
+
+## 14.3 计分
+下面实现计分系统,跟踪玩家得分, 显示最高得分,当前等级和余下的飞船数.
+
+### 14.3.1 显示得分
+为了显示得分, 新建一个类`Scoreboard`.就当前而言,这个类只显示当前得分
+
+### 14.3.2 创建记分牌
+为了显示得分, 我们在`alien_invasion.py`创建一个`Scoreboard`实例
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/89a146c422d10aaa2614073176fe9d9df1003477)
