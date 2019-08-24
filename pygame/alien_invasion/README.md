@@ -374,3 +374,8 @@ pygame.sprite.spritecollideany(ship, aliens):
 当前, 我们的代码中遗漏了一些被消灭的外星人.
 例如, 在一次循环中有两颗子弹同时射中外星人, 或者因子弹宽同时击中了多个外星人, 玩家只能得到一个外星人的点数, 为了修复这个问题, 我们调整检测外星人碰撞方式.
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/b2829fb53162209b8b0b34b164d1aad9473d4413)
+
+### 13.3.5 提高点数
+玩家每提高一个等级, 游戏都变得困难, 因此处于较高等级时, 外星人点数应该更高.
+为实现这种功能, 我们添加一些代码, 在游戏加快时提高点数.
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/9e4659e86dd35da99bc2d4592b3d55d54525dc7c)
