@@ -370,17 +370,17 @@ pygame.sprite.spritecollideany(ship, aliens):
 在此之前, 指定击落外星人得分点为50
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/e562613cc0203b77ef53c490059c72293e2169f0)
 
-### 13.3.4 将消灭的每个外星人都计入得分
+### 14.3.4 将消灭的每个外星人都计入得分
 当前, 我们的代码中遗漏了一些被消灭的外星人.
 例如, 在一次循环中有两颗子弹同时射中外星人, 或者因子弹宽同时击中了多个外星人, 玩家只能得到一个外星人的点数, 为了修复这个问题, 我们调整检测外星人碰撞方式.
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/b2829fb53162209b8b0b34b164d1aad9473d4413)
 
-### 13.3.5 提高点数
+### 14.3.5 提高点数
 玩家每提高一个等级, 游戏都变得困难, 因此处于较高等级时, 外星人点数应该更高.
 为实现这种功能, 我们添加一些代码, 在游戏加快时提高点数.
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/9e4659e86dd35da99bc2d4592b3d55d54525dc7c)
 
-### 13.3.6 将得分圆整
+### 14.3.6 将得分圆整
 大多数街机风格的射击游戏都将游戏的得分显示为10的整数倍, 下面让我们的计分系统遵循这个规则.
 我们还将设置得分的格式, 在大数字中添加逗号表示千位的分隔符.
 ```py
@@ -393,3 +393,8 @@ score_str = "{:,}".format(rounded_score)
 ```
 使用字符串控制指令,它让python将数值转换为字符时插入`,`
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/6a17702f5e6ff40a2785cb30332230942e131d09)
+
+### 14.3.7 最高得分
+每个玩家都想超过游戏的最高得分记录.
+下面来跟踪并显示最高得分, 我们将最高得分存储在`GameStats`中
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/636081d2d8c4c4ee9fa1e5d5e0bf79992f203138)
