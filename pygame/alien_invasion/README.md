@@ -398,3 +398,6 @@ score_str = "{:,}".format(rounded_score)
 每个玩家都想超过游戏的最高得分记录.
 下面来跟踪并显示最高得分, 我们将最高得分存储在`GameStats`中
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/636081d2d8c4c4ee9fa1e5d5e0bf79992f203138)
+
+### 14.3.8 显示等级
+-   [修改](https://github.com/chenboshuo/learn_python/commit/3db365ab65803033b221b53b5878ade45ff505d6)
