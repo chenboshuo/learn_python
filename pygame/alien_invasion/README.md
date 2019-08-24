@@ -379,3 +379,17 @@ pygame.sprite.spritecollideany(ship, aliens):
 玩家每提高一个等级, 游戏都变得困难, 因此处于较高等级时, 外星人点数应该更高.
 为实现这种功能, 我们添加一些代码, 在游戏加快时提高点数.
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/9e4659e86dd35da99bc2d4592b3d55d54525dc7c)
+
+### 13.3.6 将得分圆整
+大多数街机风格的射击游戏都将游戏的得分显示为10的整数倍, 下面让我们的计分系统遵循这个规则.
+我们还将设置得分的格式, 在大数字中添加逗号表示千位的分隔符.
+```py
+rounded_score = round(self.stats.score, -1)
+```
+函数`round()`第二个实参指定小数位数.
+
+```py
+score_str = "{:,}".format(rounded_score)
+```
+使用字符串控制指令,它让python将数值转换为字符时插入`,`
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/6a17702f5e6ff40a2785cb30332230942e131d09)
