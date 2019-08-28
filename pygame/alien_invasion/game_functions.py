@@ -68,6 +68,7 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, aliens,
         sb.prep_score()
         sb.prep_high_score()
         sb.prep_level()
+        sb.prep_ships()
 
         # 清空外星人和子弹列表
         aliens.empty()
@@ -174,11 +175,15 @@ def create_fleet(ai_settings, screen, ship, aliens):
         for alien_number in range(number_aliens_x):
             create_alien(ai_settings, screen, aliens, alien_number, row_number)
 
-def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
-    '''响应被外星人撞到的飞船'''
+
+def ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets):
+    """响应被外星人撞到的飞船"""
     if stats.ships_left > 0:
         # 将ship_left减1
         stats.ships_left -= 1
+
+        # 更新记分牌
+        sb.prep_ships()
 
         # 清空外星人和子弹列表
         aliens.empty()
@@ -195,19 +200,18 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         pygame.mouse.set_visible(True)  # 游戏结束,显示光标
 
 
-def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
-    '''检查是不是有外星人到达屏幕底端'''
+def check_aliens_bottom(ai_settings, screen, stats, sb, ship, aliens, bullets):
+    """检查是不是有外星人到达屏幕底端"""
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             # 像飞船被撞到一样处理
-            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets)
             break
 
-def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
-    '''
-    检查外星人是否位于屏幕边缘, 并更新外星人位置
-    '''
+
+def update_aliens(ai_settings, screen, stats, sb, ship, aliens, bullets):
+    """检查外星人是否位于屏幕边缘, 并更新外星人位置"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
 
@@ -218,10 +222,10 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
         它检查精灵和编组是否发生碰撞, 找到与精灵发生了碰撞的成员后停止遍历编组.
         在这里, 它遍历编组aliens, 返回它找到的第一个与飞船发生碰撞的外星人.
         '''
-        ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+        ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
     # 检查外星人是否到达屏幕底端
-    check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
+    check_aliens_bottom(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
 def check_fleet_edges(ai_settings, aliens):
     '''有外星人到达边缘时采取的相应的措施'''

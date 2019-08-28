@@ -401,3 +401,9 @@ score_str = "{:,}".format(rounded_score)
 
 ### 14.3.8 显示等级
 -   [修改](https://github.com/chenboshuo/learn_python/commit/3db365ab65803033b221b53b5878ade45ff505d6)
+
+### 14.3.9 显示余下的飞船数
+最后,我们让左上角显示剩余的图形显示飞船数.
+
+同时修复了一个小bug: `imag`必须改为`image`才能正常渲染
+-   [相关修改](https://github.com/chenboshuo/learn_python/commit/5b4c7e290078e1455f0e51a32b8af43da50f4bd5)
