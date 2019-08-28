@@ -1,10 +1,11 @@
 import pygame.font
 
+
 class Button():
-    '''一个对按钮管理的类'''
+    """一个对按钮管理的类"""
 
     def __init__(self, ai_settings, screen, msg):
-        '''初始化按钮属性'''
+        """初始化按钮属性"""
         self.screen = screen
         self.screen_rect = screen.get_rect()
 
@@ -23,10 +24,11 @@ class Button():
 
 
     def prep_msg(self,msg):
-        '''将msg渲染为图像, 并使其在按钮上居中'''
+        """将msg渲染为图像, 并使其在按钮上居中"""
         self.msg_image = self.font.render(msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
+
     def draw_button(self):
         """绘制一个用颜色填充的按钮,再绘制文本"""
         self.screen.fill(self.button_color, self.rect)

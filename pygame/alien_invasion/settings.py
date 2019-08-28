@@ -2,14 +2,14 @@ class Setting():
     """存储游戏所有设置的类"""
 
     def __init__(self):
-        '''初始化游戏设置'''
+        """初始化游戏设置"""
         # 屏幕设置
         self.screen_width = 900
         self.screen_height = 600
         self.bg_color = (230, 230, 230)
 
         # 子弹设置
-        self.bullet_width = 300
+        self.bullet_width = 5
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60 # 深灰色子弹
         self.bullets_allowed = 3
@@ -27,7 +27,6 @@ class Setting():
 
         self.initialize_dynamic_settings()
 
-
     def initialize_dynamic_settings(self):
         """初始化随游戏进行而变化的设置"""
         self.ship_speed_factor = 1.5
@@ -37,7 +36,6 @@ class Setting():
 
         # 计分
         self.alien_points = 50
-
 
     def increase_speed(self):
         """提高速度设置和外星人点数"""

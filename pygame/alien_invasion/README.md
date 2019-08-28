@@ -407,3 +407,6 @@ score_str = "{:,}".format(rounded_score)
 
 同时修复了一个小bug: `imag`必须改为`image`才能正常渲染
 -   [相关修改](https://github.com/chenboshuo/learn_python/commit/5b4c7e290078e1455f0e51a32b8af43da50f4bd5)
+
+## 14.4 小结
+[修改了一些代码的不规范和拼写错误的地方](https://github.com/chenboshuo/learn_python/commit/de1579b7e3599be6aa366863a96578b04cbd1faa)
