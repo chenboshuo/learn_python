@@ -2,5 +2,6 @@
 *-checkpoint.ipynb
 *.pyc
 start/.ipynb_checkpoints/
+.virtual_documents
 
 **/.idea

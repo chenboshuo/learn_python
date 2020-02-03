@@ -1,8 +1,22 @@
+---
+jupyter:
+  jupytext:
+    formats: ipynb,py:light,md
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.2'
+      jupytext_version: 1.3.3
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
 
 #  类
 
-## 创建和使用类
 
+## 创建和使用类
 
 ```python
 class Dog(): # 根据约定,首字母大写为类
@@ -30,25 +44,12 @@ your_dog = Dog('lucy',3)
 your_dog.sit()
 ```
 
-    my dog's name is While.
-    my dog is 6 years old.
-    While is now sitting.
-    While rolled over
-    Lucy is now sitting.
-    
-
-
-
-
-    'while'
-
-
-
 `__init()__`是个特殊的方法,当你根据Dog类创建实例时,python都会自动运行它
 
 这里self包含三个形参,self,name,age.形参self必不可少,必须位于其他形参前面.python调用__init__()的方法创建Dog类时,将自动传入实参self, 每个与类相关联的方法调用都自动传递实参self,它是一个指向实例本身的引用,让实例能访问类中的属性和方法.我们创建Dog实例时,python调用Dog类的方法__init__()方法,通过实参Dog()传递名字和年龄;self将自动传递,我们不需要传递它.
 
  `__init()__`中的变量都有前缀self,以self为前缀的变量可以供类中所有方法调用,我们还可以通过类的任何实例访问这些变量
+
 
 名称前的单下划线（如：`_shahriar`）
 
@@ -57,7 +58,6 @@ your_dog.sit()
 以下划线`_`为前缀的名称（如`_spam`）应该被视为API中非公开的部分（不管是函数、方法还是数据成员）。此时，应该将它们看作是一种实现细节，在修改它们时无需对外部通知。
 
 正如上面所说，这确实类似一种惯例，因为它对解释器来说确实有一定的意义，如果你写了代码`from <模块/包名> import *`，那么以`_`开头的名称都不会被导入，除非模块或包中的`__all__`列表显式地包含了它们。了解更多请查看[Importing * in Python](http://shahriar.svbtle.com/importing-star-in-python)。
-
 
 ```python
 class Dog(): # 根据约定,首字母大写为类
@@ -74,14 +74,6 @@ class Dog(): # 根据约定,首字母大写为类
 my_dog = Dog('while',6)
 my_dog.name()
 ```
-
-
-
-
-    'while'
-
-
-
 
 ```python
 class Dog(): # 根据约定,首字母大写为类
@@ -100,28 +92,25 @@ my_dog = Dog('while',6)
 my_dog.name
 ```
 
-
-
-
-    'while'
-
-
-
 ### 根据类创建实例
 
+
 #### 1.访问属性
+
 
 访问实例的属性,用句点表示法
 - my_dog.name
 
+
 #### 调用方法
+
 
 点名实例名称和调用方法,用句点分隔
 
 my_dog.set()
 
-### 给属性指定默认值
 
+### 给属性指定默认值
 
 ```python
 class Car():
@@ -170,31 +159,23 @@ my_new_car.increment_odometer(-5)
 my_new_car.read_odometer()
 ```
 
-    2016 Audi A4
-    this car has 100 miles on it
-    you can't roll back an odometer
-    this car has 100 miles on it
-    
-
 在1处初始化里程表的里程数为0
+
 
 ### 修改属性的值
 
-#### 直接修改属性的值
 
+#### 直接修改属性的值
 
 ```python
 my_new_car.odometer_reading = 23       
 my_new_car.read_odometer()
 ```
 
-    this car has 23 miles on it
-    
-
 可以用句点表示法设置属性的值
 
-#### 通过方法修改属性的值
 
+#### 通过方法修改属性的值
 
 ```python
 my_new_car.update_odometer(25)
@@ -205,15 +186,8 @@ my_new_car.update_odometer(120)
 my_new_car.read_odometer()
 ```
 
-    this car has 25 miles on it
-    you can't roll back an odometer
-    this car has 25 miles on it
-    this car has 120 miles on it
-    
-
 ##  继承
 一个类继承另一个类的时候,自动获取原来类的属性和方法,原来的类称为父类,新的类成为子类,子类继承所有属性和方法,同时定义自己的属性和方法
-
 
 ```python
 class ElectricCar(Car):
@@ -231,15 +205,12 @@ my_tesla = ElectricCar('tesla','model s',2016)
 print(my_tesla.get_descriptive_name())
 ```
 
-    2016 Tesla Model S
-    
-
 - 定义子类时,父类必须包含在括号中
 
 super()是个特殊函数,帮助python将父类和子类关联起来, 这行代码让python调用父类的__init__(),让子类包含父类的所有属性,父类也被称为超类(superclass),所以函数名为super
 
-### 重写父类的方法
 
+### 重写父类的方法
 
 ```python
 class ElectricCar(Car):
@@ -261,12 +232,8 @@ my_tesla = ElectricCar('tesla','model s',2016)
 my_tesla.fill_gas_tank()       
 ```
 
-    this car doesn't need a gas tank
-    
-
 ###  将实例用作属性
     当属性和方法越来越长时,可能将类的一部分提取出来.你可以将大类分成多个协同工作的小类
-
 
 ```python
 class Battery():
@@ -305,9 +272,6 @@ my_tesla = ElectricCar('tesla','model s',2016)
 my_tesla.battery.describe_battery()
 ```
 
-    This car has a 70-kwhbattery
-    
-
 ## 导入类
 <code>
  from car import Car,ElectricCat
@@ -315,11 +279,12 @@ my_tesla.battery.describe_battery()
  from car import * # 导入所有类
 </code>
 
+
 ## 9.5 python 标准库
+
 
 ### OrderedDict 类
 collections的OrderedDict类创建字典并记录了我键值对的添加顺序
-
 
 ```python
 from collections import OrderedDict
@@ -333,11 +298,6 @@ favorite_languages['edward'] = 'ruby'
 for name, language in favorite_languages.items():
     print(name.title(),"'s favorite language is'",language.title())
 ```
-
-    Jens 's favorite language is' Python
-    Sarah 's favorite language is' C
-    Edward 's favorite language is' Ruby
-    
 
 ## 类编码风格
 - 类名采用驼峰命名法,类名中每个单词首字母大写,不使用下划线. 实例名和模块名都采用小写格式,单词之间加上下划线.
