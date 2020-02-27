@@ -261,6 +261,82 @@ location = 'princeton'
 print(user_profile)
 ```
 
+```python
+def tag(name, *content, cls=None, **attrs):
+    """Generate one or more HTML tage"""
+    if cls is not None:
+        attrs['class'] = cls
+    if attrs:
+        attr_str = ''.join(f' {attr}="{value}"' for attr, value 
+                           in sorted(attrs.items()))
+    else:
+        attr_str = ''
+    if content:
+        return '\n'.join(f'<{name}{attr_str}>{c}</{name}>' for c in content)
+    else:
+        return f'<{name}{attr_str} />'
+```
+
+```python
+tag('br')
+```
+
+```python
+tag('p', 'hello')
+```
+
+```python
+print(tag('p','hello','world'))
+```
+
+```python
+tag('p', 'hello', id=33)
+```
+
+```python
+print(tag('p', 'hello', 'world', cls='siidebar'))
+```
+
+```python
+tag(content='testing', name='img')
+```
+
+```python
+my_tag = {
+    'name':'img',
+    'title':'Sunset Boulevard',
+    'src': 'sunset.jpg',
+    'cls': 'framed'
+}
+tag(**my_tag)
+```
+
+### 使用关键字实参(keyword-only arguments)
+
+```python
+def f(a,*,b):
+    return a,b
+```
+
+```python
+f(1,2)
+```
+
+```python
+f(1,b=2)
+```
+
+### 仅限位置的实参(py3.8+)
+
+```python
+def f(a,b,/,c,d,*,e,f):
+    """
+    a,b 只能在这个位置;
+    e,f 只能通过关键词调用
+    """
+    return a,b,c,d,e,f
+```
+
 ## Higher-Order Functions
 A function that takes a function as argument or returns a function as
 the result is a higher-order function.
@@ -270,7 +346,11 @@ fruits = ['strawberry', 'fig', 'apple', 'cherry', 'raspberry', 'banana']
 sorted(fruits, key = len) # Any one-argument function can be used as the key.
 ```
 
-##  lambda函数
+##  Anonymous Functions
+
+The simple syntax of Python limits the body of lambda functions to be pure expressions.
+In other words, the bofy of a `lambda` cannot make assignments or 
+use any other python statement such as `while,try,etc
 
 ```python
 f = lambda x :x*2
@@ -302,6 +382,11 @@ max_ = lambda a,b:a if (a>b) else b
 max_(2,3)
 ```
 
+```python
+fruits = ['strawerry', 'fig', 'apple', 'cherry', 'raspberry', 'banana']
+sorted(fruits, key=lambda word : word[::-1])
+```
+
 ## map 函数
 map() 会根据提供的函数对指定序列做映射。
 
@@ -323,7 +408,7 @@ print(list(map(lambda x, y:x+y,[1,3,5],[2,4,6])))
 ```
 
 ```python
-# 一行实现输出多个数字
+# 一行实现输入多个数字
 print(list(map(int, input().split())))
 ```
 
@@ -381,6 +466,126 @@ from pizza import *
 ```
 无需使用.表示方法
 <!-- #endregion -->
+
+## Callable Objects
+The call operator (i.e.`()`)may be applied objects beyond user-defined functions.
+
+
+### The seven of Callable Objections 
+
+1. *User-defined functions*:  created with def statements or `lambda` expressions
+2. *Built-in functions*: A function implemented in C(for Cython).
+3. *bulit-in methods: A function implementedin C,like `dict.get`
+4. *methods*: Functions defined in thebody of a class.
+5. *classes*: When invoked, a class runs its `__new__` method to create an instance,
+then `__init__` to initialize it, and finslly the instance is returned the caller.
+Beacause there is no new operator in Python, calling a class is like calling a function.
+6. *class instance*: If a class defines a `__call__` method,
+then its instances may be invoked as functions
+7. *Generator functions* Functions or methods that used the yield keyword.
+When called, generator functions return a generator object.
+
+
+```python
+abs, callable(abs)
+```
+
+```python
+str, callable(str)
+```
+
+### User-Defined Callable Types
+
+```python
+import random
+class BingoCage:
+    def __init__(self, items):
+        self._items = list(items)
+        random.shuffle(self._items)
+    def pick(self):
+        try:
+            return self._items.pop()
+        except IndexError:
+            raise LookupError('pick from empty BingoCage')
+    def __call__(self):
+        return self.pick()
+```
+
+```python
+bingo = BingoCage(range(3))
+bingo.pick()
+```
+
+```python
+bingo(),bingo()
+```
+
+```python
+bingo()
+```
+
+```python
+callable(bingo)
+```
+
+## Function Introspection
+
+```python
+def factorical(n):
+    """retrun n!"""
+    return 1 if n<2 else n * factorial(n-1)
+```
+
+```python
+dir(factorical)
+```
+
+```python
+factorical.__code__
+```
+
+```python
+s = "This is a string"
+s.find('s'), s.rfind('s'),s.rfind('s',0,6)
+```
+
+```python
+def clip(text, max_len=80):
+    """
+    Returnthext clipped to shorten by clipping a space near the deired length.
+    """
+    end = None
+    if len(text) > max_len:
+        space_before = text.rfind(' ', 0, max_len)
+        if space_before >= 0:
+            end = space_before
+        else:
+            space_after = textxt.rfind(' ', max_len)
+            if aspace_after >= 0:
+                end = space_afterr
+    if end is None: # no spaces were found
+        end = len(text)
+    return text[:end].rstrip()
+```
+
+```python
+clip('1 2 3 4',3), clip('1 2 3 4',4)
+```
+
+```python
+from inspect import signature
+sig = signature(clip)
+sig
+```
+
+```python
+str(sig)
+```
+
+```python
+for name, param in sig.parameters.items():
+    print(param.kind, ':',name,'=', param.default)
+```
 
 <!-- #region -->
 ## 函数装饰器
@@ -604,7 +809,121 @@ def to_chinese():
 
 
 
+
 to_american()
 print('------')
 to_chinese()
+```
+
+## Packages for functional programming
+Although Guido makes it clear that Python does not aim to be a functional programming language,
+a functional coding style can be uesed to good extent,
+thanks to the support of packages like operator and functools
+
+
+### The operation Module
+
+```python
+from functools import reduce
+def fac(n):
+    return reduce(lambda a,b:a*b, range(1,n+1))
+```
+
+```python
+fac(5)
+```
+
+```python
+from functools import reduce
+from operator import mul
+def fac(n):
+    return reduce(mul,range(1,n+1))
+```
+
+```python
+fac(5)
+```
+
+`itemgetter(1)` does the same as `lambda fields: fields[1])`
+
+```python
+metro_data = [
+    ('Tokyo', 'JP', 36.923, (35,139)),
+    ('Sao Paulo', 'BR', 19.46),
+    ('Delhi NCR', 'IN', 21.935)
+]
+
+```
+
+```python
+from operator import itemgetter
+sorted(metro_data,key=itemgetter(1))
+```
+
+```python
+metro_data[1][1,0]
+```
+
+If you pass multiple index arguments to itemgetter, the function will return tuples with the extracted values
+
+```python
+cc_name = itemgetter(1,0)
+for city in metro_data:
+    print(cc_name(city))
+```
+
+```python
+from operator import methodcaller
+s = 'the time has come'
+upcase = methodcaller('upper')
+upcase(s)
+```
+
+```python
+hiphenate = methodcaller('replace', ' ', '-')
+hiphenate(s)
+```
+
+## Freezing Arguments with functools.partial 
+
+```python
+from operator import mul
+from functools import partial
+triple = partial(mul, 3) # Create new function from mul, binding first positional arguments to 3
+triple(3)
+```
+
+# 函数的应用
+
+
+## Bobo
+
+```python
+import bobo
+
+@bobo.query('/')
+def hello(person):
+    return f'hello {person}'
+```
+
+The `bobo.query` decorator intergates a plain function such as `hello` with the request handing machinery of the famework.
+
+The point is that Bobo introspects the hello function and finds out it need one parameter named `person` to work, and it willl retrieve a parameter with that name from the request and pass it to hello, 
+so the programmer does not need to touch the request object at all.
+
+
+```shell
+bobo -f text_files/hello.py
+```
+
+```python
+!curl -i http://localhost:8080/
+```
+
+```python
+!curl -i http://localhost:8080/?person=Jim
+```
+
+```python
+
 ```

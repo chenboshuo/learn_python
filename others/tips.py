@@ -2,12 +2,13 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py:light
+#     cell_metadata_json: true
+#     formats: ipynb,py:light,md
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.1.7
+#       format_version: '1.5'
+#       jupytext_version: 1.3.3
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -131,6 +132,14 @@ tuple(tuple1)
 
 # 生成器将需要的生成一次
 
+tuple1 = (x for x in range (3))
+tuple1[0]
+
+for i in tuple1:
+    print(i)
+
+tuple(tuple1)
+
 # ## all or any
 
 x = [True, True, False]
@@ -140,19 +149,19 @@ if all(x):
     print("Not one False")
 if any(x) and not all(x):
     print("At least one True or False")
-    
 
-# + {"heading_collapsed": true, "cell_type": "markdown"}
+
+# + [markdown] {"heading_collapsed": true}
 # # math
 
-# + {"hidden": true, "cell_type": "markdown"}
+# + [markdown] {"hidden": true}
 # ## 角度与弧度转化
 
 # + {"hidden": true}
 import math
 math.radians(180)
 
-# + {"hidden": true, "cell_type": "markdown"}
+# + [markdown] {"hidden": true}
 # ## 取整
 
 # + {"hidden": true}
@@ -181,6 +190,8 @@ sum([2,3,5]) # 必须是列表
 # 生成(商,余数)对
 divmod(10,3)
 
+10 // 3, 10 % 3
+
 line = 'abcdL'
 line.capitalize()
 
@@ -188,14 +199,26 @@ help(str.capitalize)
 
 # ## pow(x, y)
 
+import cProfile
+
 cProfile.run('pow(1234567,4567676,56)')
 
-import cProfile
+
 def power(x,y,z):
     a = x**y % z
 # cProfile.run(power(1234567,4567676))
 # ypeError: exec() arg 1 must be a string, bytes or code object
 cProfile.run('power(1234567,4567676,56)')
+
+cProfile.run('pow(1234567,4567676)')
+
+
+# +
+def power(x,y):
+    a = x**y
+    
+cProfile.run('power(1234567,4567676)')    
+# -
 
 # ## filter
 # Filter函数接受一个列表和一条规则，就像map一样，但它通过比较每个元素和布尔过滤规则来返回原始列表的一个子集。
@@ -212,7 +235,7 @@ import numpy as np
 
 np.arange(3,7,2)
 
-# ## linspace 等距离分割区间
+# ### linspace 等距离分割区间
 # Linspace和Arrange非常相似，但略有不同。Linspace以指定数目均匀分割区间。所以给定区间start和end，以及等分分割点数目num，linspace将返回一个NumPy数组。这对绘图时数据可视化和声明坐标轴特别有用。
 
 # np.llinspace(start,stop,num)
@@ -232,6 +255,7 @@ b = a
 b+=1
 print(a)
 print(b)
+id(a) == id(b), id(a), id(b)
 
 # python里面的类型其实也分为immutable和mutable二种，之所以会导致上面的现象，就是因为常数是immutable类型，回想之前说python任何数据都是对象，既然1,2也是对象，而且还是immutable，当然不能被b修改，所以会为b重新开辟空间存放这个immutable的对象2。
 #
@@ -242,6 +266,7 @@ b = a
 b += [3]
 print(a)
 print(b)
+id(a) == id(b)
 
 a = [1,2]
 b = a
