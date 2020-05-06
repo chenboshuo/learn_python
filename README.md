@@ -8,7 +8,7 @@
 
 ## 参考
 -   [python从入门到实践](https://m.tb.cn/h.ebtZnRI)
-
+-   [jackzhenguo/python-small-examples](https://github.com/jackzhenguo/python-small-examples)
 ## 相关笔记,目录
 
 > [markdown笔记在这里](https://github.com/chenboshuo/python_learning/wiki)
