@@ -39,32 +39,109 @@ data = {
  }
 
 row_labels = [101, 102, 103, 104, 105, 106, 107]
-df = pd.DataFrame(data=data, index=row_labels)
-df
+py_score = pd.DataFrame(data=data, index=row_labels)
+py_score
 ```
 
-## 读取文件 快速预览
+In this table, the first row contains the **column labels** (name, city, age, and py-score). The first column holds the **row labels** (101, 102, and so on). All other cells are filled with the **data values**.
+![from_realpython](https://files.realpython.com/media/fig-1.d6e5d754edf5.png)
+
+
+## 生成DataFrame
+
+
+### 字典生成
 
 ```python
-df = pd.read_csv('text_files/death_valley_2014.csv')
-df.head() # 读取文件,默认显示前5行
+d = {'x': [1, 2, 3], 
+     'y': np.array([2, 4, 8]), 
+     'z': 100
+    }
+pd.DataFrame(d)
 ```
 
 ```python
-df.tail() # 显示最后几行
+# 指定索引, 列的顺序
+pd.DataFrame(d, index=[100, 200, 300], columns=['z', 'y', 'x'])
+```
+
+### 列表创建
+
+
+#### use a list of dictionaries 
+
+```python
+l = [{'x': 1, 'y': 2, 'z': 100},
+     {'x': 2, 'y': 4, 'z': 100},
+     {'x': 3, 'y': 8, 'z': 100}]
+pd.DataFrame(l)
+```
+
+#### use a nested list
+
+```python
+l = [[1, 2, 100],
+     [2, 4, 100],
+     [3, 8, 100]]
+df_l = pd.DataFrame(l, columns=['x', 'y', 'z'])
+df_l
 ```
 
 ```python
-df.info()
+l[0][0] = 999
+df_l
+```
+
+### Creating a Pandas DataFrame With NumPy Arrays
+
+```python
+arr = np.array([[1, 2, 100],
+                [2, 4, 100],
+                [3, 8, 100]])
+df_arr = pd.DataFrame(arr, columns=['x', 'y', 'z'])
+df_arr
+```
+
+```python
+arr[0,0] = 1000
+df_arr
+```
+
+If this behavior isn’t what you want, then you should specify copy=True in the DataFrame constructor. That way, `df_arr` will be created with a copy of the values from arr instead of the actual values.
+
+
+### 文件读取
+
+```python
+dath_valley = pd.read_csv('text_files/death_valley_2014.csv')
+dath_valley.head()
+```
+
+## 快速预览
+
+```python
+py_score.head() # 默认显示前5行
+```
+
+```python
+py_score.head(n=2)
+```
+
+```python
+py_score.tail() # 显示最后几行
+```
+
+```python
+py_score.info()
 ```
 
 ```python
 # 把所有有数据类型的数据做一个简单统计
-df.describe()
+py_score.describe()
 ```
 
 ```python
-type(df)
+type(py_score)
 ```
 
 ## 信息提取
@@ -73,23 +150,18 @@ type(df)
 ### 获取列名
 
 ```python
-df.columns
+py_score.columns
 ```
 
 ### 获取索引
 
 ```python
-df.index
+py_score.index
 ```
-
-说明从0开始,360行结束(不包括360)
-
 
 ### 获取某一行信息
 
 ```python
-df.loc[0]  # 如果索引不是数字,那么里面填对应索引
-df.iloc[0] #  如果索引不是数字,那么里面还是填数字
 # df.ix[0]   # 这个是自动指定
 '''
 .ix is deprecated. Please use
@@ -97,28 +169,50 @@ df.iloc[0] #  如果索引不是数字,那么里面还是填数字
 .iloc for positional indexing
 第三个好像有警告
 '''
+py_score.loc[103]  # 索引(默认是数字)
+
 ```
 
 ```python
-df.loc[360]
+py_score.iloc[2] #  行号
 ```
+
+![from real python](https://files.realpython.com/media/fig-3.2e2d5c452c23.png)
+
 
 ### 获取某一列信息
 
 ```python
 # 名字不带空格可以这样访问
-df.PST[:10]
+py_score.city
 ```
 
 ```python
 # 名字带空格这样访问
-df['Max TemperatureF'][:3]
+cities = py_score['city']
+cities
 ```
+
+![from realpython](https://files.realpython.com/media/fig-2.2bee1e181467.png)
 
 ```python
 # 访问多列
-df[['Max TemperatureF','Min TemperatureF']][:3]
+py_score[['name', 'city']]
 ```
+
+### 获取数组
+Data as NumPy Arrays
+
+```python
+py_score.to_numpy()
+```
+
+```python
+py_score.values
+```
+
+![from real python](https://files.realpython.com/media/fig-4.a19aadbe0f10.png)
+
 
 ## 数据处理
 
@@ -126,75 +220,69 @@ df[['Max TemperatureF','Min TemperatureF']][:3]
 ### 统计空数据数量
 
 ```python
-df.isnull().sum()
+dath_valley.isnull().sum()
 ```
 
 ```python
 # 将空赋值
-df.fillna(0)
+dath_valley.fillna(0)
 ```
 
 ```python
 # 直接填充
-df.fillna(0,inplace=True)
-df.isnull().sum()
+dath_valley.fillna(0,inplace=True)
+dath_valley.isnull().sum()
 ```
 
 ### 求中位数
 
 ```python
-df.median()
+dath_valley.median()
 ```
 
 ### 筛选
 
 ```python
-df['Max TemperatureF'] > 105
+dath_valley['Max TemperatureF'] > 105
 ```
 
 ```python
-type(df['Max TemperatureF'] > 65)
+type(dath_valley['Max TemperatureF'] > 65)
 ```
 
 ```python
-df[df['Max TemperatureF'] > 109]
+dath_valley[dath_valley['Max TemperatureF'] > 109]
 ```
 
 ### 多条件的筛选
 
 ```python
-df[(df['Max TemperatureF'] > 105) & (df['Min TemperatureF']>70)]
+dath_valley[(dath_valley['Max TemperatureF'] > 105) & (dath_valley['Min TemperatureF']>70)]
 ```
 
 ```python
-df[(df['Max TemperatureF'] > 105) and (df['Min TemperatureF']>70)]
+dath_valley[(dath_valley['Max TemperatureF'] > 105) and (dath_valley['Min TemperatureF']>70)]
 ```
 
 ### 排序
 
 ```python
-df.sort_values(['Mean TemperatureF'])[:5]
+dath_valley.sort_values(['Mean TemperatureF'])[:5]
 ```
 
 ```python
-df.sort_values(['Mean TemperatureF'])[:-3:-1] # 倒着排序只能用切片了
+dath_valley.sort_values(['Mean TemperatureF'])[:-3:-1] # 倒着排序只能用切片了
 ```
 
 ```python
 #　多个数据排序
-df.sort_values(['Mean TemperatureF','Min TemperatureF'])[:5]
-```
-
-### 获取数组
-
-```python
-df['Mean TemperatureF'].values
+dath_valley.sort_values(['Mean TemperatureF','Min TemperatureF'])[:5]
 ```
 
 ### 简单统计
 
 ```python
-df['Mean TemperatureF'].value_counts()
+dath_valley['Mean TemperatureF'].value_counts()
 ```
 
 ### 分类
@@ -208,50 +296,45 @@ def is_cool(temperature):
         return 'not_so_cool'
 
 # 利用map函数
-df['is_cool?'] = df['Mean TemperatureF'].map(is_cool)
-df[['is_cool?','Mean TemperatureF']].head(15)
+dath_valley['is_cool?'] = dath_valley['Mean TemperatureF'].map(is_cool)
+dath_valley[['is_cool?','Mean TemperatureF']].head(15)
 ```
 
 ### 对全体应用函数
 
 ```python
-df.applymap(lambda x: str(x)+'...').head()
+dath_valley.applymap(lambda x: str(x)+'...').head()
 ```
 
 ### 删除数据
 
 ```python
-df = df.drop(['is_cool?'],axis=1) # 利用drop去掉最后一列
-df.head()
+dath_valley = dath_valley.drop(['is_cool?'],axis=1) # 利用drop去掉最后一列
+dath_valley.head()
 ```
 
 ```python
 # 还好不是彻底改变
-df.head()
+dath_valley.head()
 ```
 
-## 修改索引
+## 索引
 
 ```python
-scores = {'英语':[90, 70,89],
-         '数学':[64, 78, 45],
-          '姓名':['w','l','s']
-         }
-d = pd.DataFrame(scores, index=['a','b','c'])
-d
+py_score
 ```
 
 ```python
-d.iloc[0]
+py_score.index = np.arange(10, 17)
+py_score.index
 ```
 
 ```python
-d.loc['a']
+py_score
 ```
 
-```python
-df[:2]
-```
+In this example, you use numpy.arange() to generate a new sequence of row labels that holds the integers from 10 to 16. To learn more about arange(), check out NumPy arange(): [How to Use np.arange()](https://realpython.com/how-to-use-numpy-arange/).
+
 
 ## 绘图
 
@@ -261,40 +344,40 @@ df[:2]
 ```python
 # 在单元里显示
 %matplotlib inline
-df.plot()
+dath_valley.plot()
 ```
 
 ```python
-df['Max TemperatureF'].plot()
+dath_valley['Max TemperatureF'].plot()
 ```
 
 ### 柱状图
 
 ```python
-df[['Max TemperatureF','Mean TemperatureF']].plot.bar()
+dath_valley[['Max TemperatureF','Mean TemperatureF']].plot.bar()
 ```
 
 ```python
 # 也可以这样写
-df[['Max TemperatureF','Mean TemperatureF']].plot(kind='bar')
+dath_valley[['Max TemperatureF','Mean TemperatureF']].plot(kind='bar')
 ```
 
 ### 直方图
 
 ```python
 # 单独
-df[['Max TemperatureF','Mean TemperatureF']].hist()
+dath_valley[['Max TemperatureF','Mean TemperatureF']].hist()
 ```
 
 ```python
 # 合并
-df[['Max TemperatureF','Mean TemperatureF']].plot.hist()
+dath_valley[['Max TemperatureF','Mean TemperatureF']].plot.hist()
 ```
 
 ### 密度图
 
 ```python
-df[['Max TemperatureF','Mean TemperatureF']].plot.kde()
+dath_valley[['Max TemperatureF','Mean TemperatureF']].plot.kde()
 ```
 
 # reference
