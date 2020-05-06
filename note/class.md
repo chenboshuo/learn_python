@@ -16,8 +16,9 @@ jupyter:
 
 #  类
 
-
+<!-- #region toc-hr-collapsed=true toc-nb-collapsed=true -->
 ## 创建和使用类
+<!-- #endregion -->
 
 ```python
 class Dog(): # 根据约定,首字母大写为类
@@ -187,8 +188,10 @@ my_new_car.update_odometer(120)
 my_new_car.read_odometer()
 ```
 
+<!-- #region toc-hr-collapsed=true toc-nb-collapsed=true -->
 ##  继承
 一个类继承另一个类的时候,自动获取原来类的属性和方法,原来的类称为父类,新的类成为子类,子类继承所有属性和方法,同时定义自己的属性和方法
+<!-- #endregion -->
 
 ```python
 class ElectricCar(Car):
@@ -273,15 +276,16 @@ my_tesla = ElectricCar('tesla','model s',2016)
 my_tesla.battery.describe_battery()
 ```
 
+<!-- #region toc-hr-collapsed=true toc-nb-collapsed=true -->
 ## 导入类
 <code>
  from car import Car,ElectricCat
  import car # 导入整个模块
  from car import * # 导入所有类
 </code>
+<!-- #endregion -->
 
-
-## 9.5 python 标准库
+## python 标准库
 
 
 ### OrderedDict 类

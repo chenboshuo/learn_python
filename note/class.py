@@ -16,6 +16,7 @@
 
 # #  类
 
+# + [markdown] toc-hr-collapsed=true toc-nb-collapsed=true
 # ## 创建和使用类
 
 # +
@@ -178,6 +179,7 @@ my_new_car.update_odometer(120)
 my_new_car.read_odometer()
 
 
+# + [markdown] toc-hr-collapsed=true toc-nb-collapsed=true
 # ##  继承
 # 一个类继承另一个类的时候,自动获取原来类的属性和方法,原来的类称为父类,新的类成为子类,子类继承所有属性和方法,同时定义自己的属性和方法
 
@@ -265,16 +267,17 @@ class ElectricCar(Car):
 
 my_tesla = ElectricCar('tesla','model s',2016)
 my_tesla.battery.describe_battery()
-# -
 
+# + [markdown] toc-hr-collapsed=true toc-nb-collapsed=true
 # ## 导入类
 # <code>
 #  from car import Car,ElectricCat
 #  import car # 导入整个模块
 #  from car import * # 导入所有类
 # </code>
+# -
 
-# ## 9.5 python 标准库
+# ## python 标准库
 
 # ### OrderedDict 类
 # collections的OrderedDict类创建字典并记录了我键值对的添加顺序
