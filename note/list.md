@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ---
 jupyter:
   jupytext:
@@ -12,6 +13,10 @@ jupyter:
     language: python
     name: python3
 ---
+
+```python
+from IPython.core.
+```
 
 # 列表
 列表索引从0开始而不是从1开始
@@ -126,6 +131,13 @@ list_.remove('b')
 print(list_)
 ```
 
+#### 过滤函数
+
+```python
+l = [0,'',None,1,2,3]
+list(filter(bool,l))
+```
+
 ### 成员运算符
 
 ```python
@@ -139,6 +151,13 @@ print(list_)
 <!-- #region toc-hr-collapsed=true -->
 ## 组织列表
 <!-- #endregion -->
+
+### 求和
+
+```python
+a = [1,1,1,1,1]
+sum(a), sum(a,100) # 第二个表示求和初始值为100
+```
 
 ### 延长列表
 
@@ -433,8 +452,8 @@ for i in range(3):
 ### 切片
 
 ```python
-a = ['1', '2', '3', '4']
-print(a[0:2])
+a = ['0','1', '2', '3', '4']
+a[0:2]
 ```
 
 ```python
@@ -487,6 +506,17 @@ list1 = [0,[2,3]]
 list2 = list1.copy()
 list1[1][0] = 999
 list2
+```
+
+### 切片对象
+`class slice(start, stop[, step])`
+
+返回一个表示由 range(start, stop, step) 所指定索引集的 slice对象，它让代码可读性、可维护性变好。
+
+```python
+a = [0,1,2,3,4,5]
+odds = slice(1,5,2)
+a[odds],a[1:5:2]
 ```
 
 ### 切片的其他操作
@@ -669,7 +699,7 @@ tokyo[1]
 <!-- #region hidden=true -->
 函数|元组|字符串|列表||
 :-|-|-|-|-|
-+|√|√|√|
+# +|√|√|√|
 \*|√|√|√|
 \>\<|√|√|√|
 \[index\]|√|√|√|列表可以索引赋值,字符串,元组不可以|
