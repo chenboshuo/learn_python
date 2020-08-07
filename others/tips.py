@@ -226,6 +226,43 @@ cProfile.run('power(1234567,4567676)')
 seq = [1,2,3,4,5]
 list(filter(lambda x:x > 2,seq))
 
+
+# ## bisect
+# -  [reference](https://stackoverflow.com/questions/62110746/is-there-a-better-way-to-check-if-a-number-is-range-of-two-numbers)
+
+def checkRange(number):
+    if number in range(0, 5499):
+        return 5000
+    elif number in range(5500, 9499):
+        return 10000
+    elif number in range(9500, 14499):
+        return 15000
+    elif number in range(14500, 19499):
+        return 20000
+    elif number in range(19500, 24499):
+        return 25000
+    elif number in range(24500, 29499):
+        return 30000
+    elif number in range(29500, 34499):
+        return 35000
+    elif number in range(34500, 39499):
+        return 40000
+    elif number in range(39500, 44499):
+        return 45000
+print(checkRange(10000))
+
+# +
+import bisect
+
+break_points = [5499,  9499, 14499, 19499, 24499, 29499, 34499, 39499, 44499]
+values       = [5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000]
+
+n = 10000
+index = bisect.bisect_left(break_points, n)
+
+values[index]
+# -
+
 # ## numpy
 
 import numpy as np

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ---
 jupyter:
   jupytext:
@@ -17,18 +18,18 @@ jupyter:
 
 ```python
 print('hello world')
-
 ```
+
 
 ```python
 print('hello \nworld')
-
 ```
+
 
 ```python
 print('hello \ world')
-
 ```
+
 
 ```python
 print('''hello
@@ -57,3 +58,8 @@ print('123',end='\r')
 time.sleep(1)
 print('456')
 ```
+
+# 参考 
+
+
+-  [Your Guide to the Python print() Function](https://realpython.com/python-print/)
